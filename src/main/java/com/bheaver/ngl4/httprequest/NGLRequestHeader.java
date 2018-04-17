@@ -5,6 +5,6 @@ import lombok.Data;
 import lombok.Value;
 
 @Data
-public class NGLHeader {
-    private String tenancyId;
+public abstract class NGLRequestHeader {
+
 }

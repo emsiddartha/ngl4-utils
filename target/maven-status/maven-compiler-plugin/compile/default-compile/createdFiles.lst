@@ -1,3 +1,7 @@
-com/bheaver/ngl4/httprequest/NGLHeader.class
+com/bheaver/ngl4/httprequest/NGLRequestHeaderWithTenancy.class
 com/bheaver/ngl4/config/NGLConfig.class
+com/bheaver/ngl4/httprequest/NGLRequest.class
+com/bheaver/ngl4/httprequest/NGLRequestHeaderPostLogin.class
+com/bheaver/ngl4/httprequest/NGLRequestHeader.class
+com/bheaver/ngl4/util/LibraryInfoCacheUtils.class
 com/bheaver/ngl4/mongodb/MongoClientFactory.class
