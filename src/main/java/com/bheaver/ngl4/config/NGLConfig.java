@@ -8,4 +8,5 @@ import java.util.Map;
 public class NGLConfig {
     private Map<String,String> mongodb;
     private List<String> apiKeys;
+    private Map<String,Object> JWT;
 }
