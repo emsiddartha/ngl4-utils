@@ -1,12 +1,14 @@
 com/bheaver/ngl4/httprequest/NGLRequestHeaderWithTenancy.class
-com/bheaver/ngl4/exception/NGLException.class
-com/bheaver/ngl4/httpresposnse/NGLResponse.class
 com/bheaver/ngl4/config/NGLConfig.class
-com/bheaver/ngl4/httprequest/NGLRequest.class
 com/bheaver/ngl4/exception/NGLExceptionResponseBody.class
 com/bheaver/ngl4/httpresposnse/NGLResponseHeader.class
 com/bheaver/ngl4/httprequest/NGLRequestHeaderPostLogin.class
 com/bheaver/ngl4/enums/UserType.class
 com/bheaver/ngl4/httprequest/NGLRequestHeader.class
+com/bheaver/ngl4/httprequest/NGLRequestBody.class
 com/bheaver/ngl4/util/LibraryInfoCacheUtils.class
 com/bheaver/ngl4/mongodb/MongoClientFactory.class
+com/bheaver/ngl4/exception/NGLException.class
+com/bheaver/ngl4/httpresposnse/NGLResponse.class
+com/bheaver/ngl4/httprequest/NGLRequest.class
+com/bheaver/ngl4/logger/NGLLogger.class
