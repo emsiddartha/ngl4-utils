@@ -7,24 +7,31 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.mongodb.ConnectionString;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClients;
+import com.mongodb.reactivestreams.client.MongoDatabase;
+import org.bson.Document;
 import org.ho.yaml.Yaml;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.mongodb.async.client.MongoClient;
-import com.mongodb.async.client.MongoClients;
-import com.mongodb.async.client.MongoDatabase;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.io.ClassPathResource;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 import java.io.File;
 import java.util.Collections;
+//import java.util.Map;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -63,18 +70,22 @@ public class MongoClientFactory {
     @Bean(name = "CacheLibraryInfo")
     @DependsOn({"MasterDatabase"})
     @Autowired
-    public CompletableFuture<Cache<String,Map<String,String>>> getLibraryDBCache(@Qualifier("MasterDatabase")MongoDatabase mongoDatabase){
-        Cache<String,Map<String,String>> loadingCache = CacheBuilder.newBuilder().build();
-        CompletableFuture<Cache<String,Map<String,String>>> completableFuture = new CompletableFuture<>();
-        mongoDatabase.getCollection("masterLibraryAccessInfo").find().forEach(document -> {
+    public Mono<Cache<String, Map<String,String>>> getLibraryDBCache(@Qualifier("MasterDatabase")MongoDatabase mongoDatabase){
+
+        return Flux.from(mongoDatabase.getCollection("masterLibraryAccessInfo").find()).map(document -> {
             String config_databaseName = document.getString("config_databaseName");
             String config_libraryCode = document.getString("config_libraryCode");
+            //Cache<String,Map<String,String>> loadingCache = CacheBuilder.newBuilder().build();
             Map<String,String> map = Map.of("config_databaseName",config_databaseName,"config_libraryCode",config_libraryCode);
-            loadingCache.put(config_libraryCode,map);
-        },(aVoid, throwable) -> {
-            completableFuture.complete(loadingCache);
+            Object[] obj = new Object[2];
+            obj[0] = config_libraryCode;
+            obj[1] = map;
+            return obj;
+        }).collectMap(objArray -> objArray[0].toString(),objects -> (Map<String,String>)objects[1]).map(stringMapMap -> {
+            Cache<String,Map<String,String>> loadingCache = CacheBuilder.newBuilder().build();
+            loadingCache.putAll(stringMapMap);
+            return loadingCache;
         });
-        return completableFuture;
     }
 
     @Bean(name = "LibraryInfoCacheUtils")

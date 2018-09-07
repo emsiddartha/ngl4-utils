@@ -2,10 +2,8 @@ package com.bheaver.ngl4.util;
 
 import com.bheaver.ngl4.httprequest.NGLRequestHeaderWithTenancy;
 import com.google.common.cache.Cache;
-import com.mongodb.async.client.MongoClient;
-import com.mongodb.async.client.MongoDatabase;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoDatabase;
 
 import java.util.Map;
 
@@ -20,8 +18,8 @@ public class LibraryInfoCacheUtils {
         return libDetails.get("config_databaseName");
     }
 
-    public MongoDatabase getLibraryMongoDatabase(Cache<String,Map<String,String>> cache, NGLRequestHeaderWithTenancy headerWithTenancy){
-        String dbCode = getDBCode(cache,headerWithTenancy.getTenancyId());
+    public MongoDatabase getLibraryMongoDatabase(Cache<String,Map<String,String>> cache, String tenancyId){
+        String dbCode = getDBCode(cache,tenancyId);
         return mongoClient.getDatabase(dbCode);
     }
 }

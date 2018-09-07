@@ -6,4 +6,9 @@ import lombok.Data;
 public class NGLRequest<T,R> {
     private T header;
     private R body;
+
+    public NGLRequest(T header, R body) {
+        this.header = header;
+        this.body = body;
+    }
 }
