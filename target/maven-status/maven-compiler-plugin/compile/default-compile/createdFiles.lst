@@ -4,6 +4,7 @@ com/bheaver/ngl4/exception/NGLExceptionResponseBody.class
 com/bheaver/ngl4/httpresposnse/NGLResponseHeader.class
 com/bheaver/ngl4/httprequest/NGLRequestHeaderPostLogin.class
 com/bheaver/ngl4/enums/UserType.class
+com/bheaver/ngl4/exception/ExceptionJSONSerializer.class
 com/bheaver/ngl4/httprequest/NGLRequestHeader.class
 com/bheaver/ngl4/httprequest/NGLRequestBody.class
 com/bheaver/ngl4/util/LibraryInfoCacheUtils.class

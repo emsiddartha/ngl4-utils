@@ -11,4 +11,7 @@ public class NGLRequest<T,R> {
         this.header = header;
         this.body = body;
     }
+
+    public NGLRequest() {
+    }
 }

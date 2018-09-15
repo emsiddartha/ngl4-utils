@@ -6,6 +6,7 @@
 /home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/enums/UserType.java
 /home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/httprequest/NGLRequestHeaderPostLogin.java
 /home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/httprequest/NGLRequestBody.java
+/home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/exception/ExceptionJSONSerializer.java
 /home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/httprequest/NGLRequestHeaderWithTenancy.java
 /home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/mongodb/MongoClientFactory.java
 /home/siddartha/workspace/ngl4-utils/src/main/java/com/bheaver/ngl4/httpresposnse/NGLResponseHeader.java
